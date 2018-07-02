@@ -19,38 +19,35 @@
 
 
   <table border="1" width="80%" style="margin-left: 10%" bgcolor="#CCD4D6">
-    <thead>
-      <tr>
-
-        <th>Identificacion</th>
-        <th>Nombre del estudiante</th>
-        <th>Apellido del estudiante</th>
-        <th >Modificar y Eliminar Estudiantes</th>
-      </tr>
-    </thead>
-    {% for est in estus %}
+    <tr>
+      <th>Identificacion</th>
+      <th>Nombre del estudiante</th>
+      <th>Apellido del estudiante</th>
+      <th >Modificar y Eliminar Estudiantes</th>
+    </tr>
+    {% for student in students %}
 
     <tr>
       <td>
-        <p>{{est.id}}</p>
+        <p>{{student.id}}</p>
       </td>
       <td>
-        <p>{{est.nombre}}</p>
+        <p>{{student.nombre}}</p>
       </td>
       <td>
-        <p>{{est.apellido}}</p>
+        <p>{{student.apellido}}</p>
       </td>
       <td>
         <form method="POST" action="./update">
-          <input type="hidden" value="{{est.id}}" name="id"  class="p">
-          <input type="text" value="{{est.nombre}}" name="nombre">
-          <input type="text" value="{{est.apellido}}" name="apellido">
+          <input type="hidden" value="{{student.id}}" name="id"  class="p">
+          <input type="text" value="{{student.nombre}}" name="nombre">
+          <input type="text" value="{{student.apellido}}" name="apellido">
           <input type="submit" value="Modificar Estudiante">
         </form>
       </td>
       <td>
         <form method="POST" action="./delete" >
-          <input type="hidden" value="{{est.id}}" name="id">
+          <input type="hidden" value="{{student.id}}" name="id">
           <input  type="submit" value="Eliminar Estudiante">
         </form>
       </td>

@@ -9,7 +9,7 @@ from flask import redirect
 from flask_sqlalchemy import SQLAlchemy
 
 project_dir = os.path.dirname(os.path.abspath(__file__))
-database_file = "sqlite:///{}".format(os.path.join(project_dir, "estudiante.db"))
+database_file = "sqlite:///{}".format(os.path.join(project_dir, "estudiante1.db"))
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = database_file
@@ -35,12 +35,12 @@ def home():
     # return "My flask app"
     if request.form:
         print(request.form)
-        estu = estudiantes(nombre=request.form.get("nombre"), apellido=request.form.get("apellido"))
-        db.session.add(estu)
+        student = estudiantes(nombre=request.form.get("nombre"), apellido=request.form.get("apellido"))
+        db.session.add(student)
         db.session.commit()
 
-    estus = estudiantes.query.all()
-    return render_template("home.html", estus=estus)
+    students = estudiantes.query.all()
+    return render_template("home.html", students=students)
     # return render_template("home.html")
 
 
@@ -49,9 +49,9 @@ def update():
     nombre = request.form.get("nombre")
     id = request.form.get("id")
     apellido = request.form.get("apellido")
-    stu = estudiantes.query.get(id)
-    stu.nombre = nombre
-    stu.apellido=apellido
+    student = estudiantes.query.get(id)
+    student.nombre = nombre
+    student.apellido=apellido
     db.session.commit()
     return redirect("/")
 
@@ -59,8 +59,8 @@ def update():
 @app.route("/delete", methods=["POST"])
 def delete():
     id = request.form.get("id")
-    stu = estudiantes.query.get(id)
-    db.session.delete(stu)
+    student = estudiantes.query.get(id)
+    db.session.delete(student)
     db.session.commit()
     return redirect("/")
 
