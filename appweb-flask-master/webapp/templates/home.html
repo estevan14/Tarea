@@ -1,0 +1,63 @@
+<html>
+<head>
+
+  <link rel="stylesheet" type="text/css" href="estilos.css">
+</head>
+<body>
+
+  <br>
+  <br> 
+  <br>
+  <h1 id="titulo" style="text-align: center;"> <i>REGISTRO DE ESTUDIANTES</i></h1>
+
+  <form method="POST" action="/" style="text-align: center;" >
+    
+    <input type="text" name="nombre" placeholder="Ingrese El Nombre" style="font-size: 1em">
+    <input type="text" name="apellido" placeholder="Ingrese El Apellido" style="font-size: 1em">
+    <input class="btn-success" type="submit" value="Registrar Nuevo Estudiante" style="font-size: 1em">
+  </form>
+
+
+  <table border="1" width="80%" style="margin-left: 10%" bgcolor="#CCD4D6">
+    <thead>
+      <tr>
+
+        <th>Identificacion</th>
+        <th>Nombre del estudiante</th>
+        <th>Apellido del estudiante</th>
+        <th >Modificar y Eliminar Estudiantes</th>
+      </tr>
+    </thead>
+    {% for est in estus %}
+
+    <tr>
+      <td>
+        <p>{{est.id}}</p>
+      </td>
+      <td>
+        <p>{{est.nombre}}</p>
+      </td>
+      <td>
+        <p>{{est.apellido}}</p>
+      </td>
+      <td>
+        <form method="POST" action="./update">
+          <input type="hidden" value="{{est.id}}" name="id"  class="p">
+          <input type="text" value="{{est.nombre}}" name="nombre">
+          <input type="text" value="{{est.apellido}}" name="apellido">
+          <input type="submit" value="Modificar Estudiante">
+        </form>
+      </td>
+      <td>
+        <form method="POST" action="./delete" >
+          <input type="hidden" value="{{est.id}}" name="id">
+          <input  type="submit" value="Eliminar Estudiante">
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+
+  </table>
+</main>
+</body>
+</html>
